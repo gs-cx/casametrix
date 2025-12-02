@@ -1,0 +1,12 @@
+### PROMPT PROJET CASAMETRIX
+SaaS B2B PropTech – Casametrix.
+Plateforme d’intelligence d’adresse et de golden data immobilière (DVF, DPE, cadastre, GPS, scoring, ESG, API JWT, UI React).
+
+### ÉTAPE EN COURS
+Stabilisation du front public : home, search, pricing, blog, FAQ, login/register.
+Mise en place de l’audit et des snapshots pour éviter les régressions.
+
+### DIFFICULTÉS / POINTS DE VIGILANCE
+- Garder toutes les pages alignées (PageMeta, header, navigation).
+- Éviter les régressions entre les différentes sessions ChatGPT.
+- Structurer un golden index d’adresses cliquées côté UI + API.

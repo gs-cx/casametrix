@@ -1,0 +1,26 @@
+from __future__ import annotations
+
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+
+from app.schemas import ESGReportInput, ESGReport, ESGMetric, UserCtx
+from app.core.rls import db_dep
+from app.deps import current_user
+
+router = APIRouter()
+
+
+@router.post("/report", response_model=ESGReport)
+def esg_report(
+    payload: ESGReportInput,
+    db: Session = Depends(db_dep),
+    user: UserCtx = Depends(current_user),
+):
+    # Mock : 3 métriques
+    metrics = [
+        ESGMetric(name="energy_use", value=120.5, unit="kWh/m²"),
+        ESGMetric(name="water_use", value=35.2, unit="L/m²"),
+        ESGMetric(name="co2e", value=18.9, unit="kgCO2e/m²"),
+    ]
+    return ESGReport(property_id=payload.property_id, year=payload.year, metrics=metrics)
+

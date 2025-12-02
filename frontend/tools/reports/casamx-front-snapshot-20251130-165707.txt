@@ -1,0 +1,80 @@
+=== Casametrix Front Snapshot ===
+Date        : 2025-11-30 16:57:07
+Projet      : Casametrix UI
+Racine git  : /home/admincmx/projects/casametrix-ui
+
+--- Contexte projet (tools/casamx-project-context.txt) ---
+### PROMPT PROJET CASAMETRIX
+SaaS B2B PropTech – Casametrix.
+Plateforme d’intelligence d’adresse et de golden data immobilière (DVF, DPE, cadastre, GPS, scoring, ESG, API JWT, UI React).
+
+### ÉTAPE EN COURS
+Stabilisation du front public : home, search, pricing, blog, FAQ, login/register.
+Mise en place de l’audit et des snapshots pour éviter les régressions.
+
+### DIFFICULTÉS / POINTS DE VIGILANCE
+- Garder toutes les pages alignées (PageMeta, header, navigation).
+- Éviter les régressions entre les différentes sessions ChatGPT.
+- Structurer un golden index d’adresses cliquées côté UI + API.
+
+=== Casametrix Front Audit ===
+Dossier projet : /home/admincmx/projects/casametrix-ui
+
+--- Étape 1 : build TypeScript/React ---
+
+
+> casametrix-ui@0.0.1 build
+> tsc -b && vite build
+
+vite v5.4.20 building for production...
+transforming...
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+✓ 96 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   4.44 kB │ gzip:   1.26 kB
+dist/assets/index-DgvKqyGq.css   42.23 kB │ gzip:  11.71 kB
+dist/assets/index-CJQMrY2N.js   376.84 kB │ gzip: 115.82 kB
+✓ built in 3.42s
+
+--- Étape 2 : audit des routes & pages ---
+=== Casametrix Front Routes Audit ===
+Fichier App.tsx : /home/admincmx/projects/casametrix-ui/src/App.tsx
+
+[OK] 8 route(s) trouvée(s) dans App.tsx.
+  - path="/" → component="HomePage"
+  - path="/search" → component="SearchPage"
+  - path="/pricing" → component="PricingPage"
+  - path="/blog" → component="BlogPage"
+  - path="/faq" → component="FaqPage"
+  - path="/login" → component="LoginPage"
+  - path="/register" → component="RegisterPage"
+  - path="*" → component="HomePage"
+
+--- Vérification des routes attendues ---
+[OK] Route "/register" correctement reliée à "RegisterPage".
+[OK] Route "/search" correctement reliée à "SearchPage".
+[OK] Route "/" correctement reliée à "HomePage".
+[OK] Route "/login" correctement reliée à "LoginPage".
+[OK] Route "/blog" correctement reliée à "BlogPage".
+[OK] Route "/faq" correctement reliée à "FaqPage".
+[OK] Route "/pricing" correctement reliée à "PricingPage".
+[OK] Route fallback "*" détectée (utilisée comme catch-all).
+
+--- Vérification des pages, PageMeta et droits ---
+[OK] Page "/home/admincmx/projects/casametrix-ui/src/pages/RegisterPage.tsx" : <PageMeta ... path="/register"> détecté.
+[WARN] Page "/home/admincmx/projects/casametrix-ui/src/pages/SearchPage.tsx" : aucun <PageMeta ... path="/search"> trouvé.
+[OK] Page "/home/admincmx/projects/casametrix-ui/src/pages/HomePage.tsx" : <PageMeta ... path="/"> détecté.
+[OK] Page "/home/admincmx/projects/casametrix-ui/src/pages/LoginPage.tsx" : <PageMeta ... path="/login"> détecté.
+[OK] Page "/home/admincmx/projects/casametrix-ui/src/pages/BlogPage.tsx" : <PageMeta ... path="/blog"> détecté.
+[OK] Page "/home/admincmx/projects/casametrix-ui/src/pages/FaqPage.tsx" : <PageMeta ... path="/faq"> détecté.
+[OK] Page "/home/admincmx/projects/casametrix-ui/src/pages/PricingPage.tsx" : <PageMeta ... path="/pricing"> détecté.
+
+=== Résultat audit front (routes/pages/droits) ===
+Warnings : 1
+Erreurs  : 0
+
+[OK] Routes, pages et configuration d'accès Casametrix OK (aucune erreur bloquante).
+
+[INFO] Snapshot écrit dans : /home/admincmx/projects/casametrix-ui/tools/reports/casamx-front-snapshot-20251130-165707.txt
+[INFO] Dernier snapshot :  /home/admincmx/projects/casametrix-ui/tools/reports/casamx-front-snapshot-latest.txt

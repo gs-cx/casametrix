@@ -1,0 +1,15 @@
+import TopNav from "./TopNav";
+import Stepper from "./Stepper";
+import Footer from "./Footer";
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="min-h-screen flex flex-col bg-slate-50">
+      <TopNav />
+      {/* Stepper fin (plus de grosse bande bleue) */}
+      <Stepper />
+      <main className="flex-1">{children}</main>
+      <Footer />
+    </div>
+  );
+}
