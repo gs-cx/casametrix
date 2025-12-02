@@ -1,114 +1,95 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Layout from "../components/Layout";
 
-const HomePage: React.FC = () => {
+export default function HomePage() {
   return (
-    <div className="min-h-screen bg-slate-50">
-      <main className="mx-auto max-w-6xl px-4 py-10 lg:px-8">
-        {/* Hero principal */}
-        <section className="grid gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] items-center">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-              Plateforme d’intelligence d’adresse
-            </p>
-            <h1 className="mt-3 text-3xl font-semibold text-slate-900 md:text-4xl">
-              Golden data immobilière pour les décideurs B2B
-            </h1>
-            <p className="mt-4 max-w-xl text-sm text-slate-600">
-              Casametrix unifie DVF, DPE, cadastre, GPS et scoring pour
-              constituer un golden index d’adresses. Une API sécurisée et une
-              interface web permettent aux équipes immobilières, aux
-              investisseurs et aux asset managers de travailler sur une donnée
-              fiable, enrichie et actionnable.
-            </p>
+    <Layout>
+      <div className="px-6 py-12 max-w-6xl mx-auto">
 
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <Link
-                to="/search"
-                className="inline-flex items-center rounded-xl bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-sky-700"
-              >
-                Tester la recherche d’adresse
-              </Link>
-              <Link
-                to="/pricing"
-                className="inline-flex items-center rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 shadow-sm hover:bg-slate-50"
-              >
-                Voir les tarifs
-              </Link>
-            </div>
+        {/* --- SECTION TITRE --- */}
+        <section className="mb-16">
+          <h1 className="text-4xl font-bold leading-tight mb-6">
+            L'information immobilière simplifiée
+          </h1>
 
-            <p className="mt-3 text-[11px] text-slate-500">
-              Données DVF et DPE issues des sources publiques, consolidées
-              dans un golden index multi-adresses pensé pour l’usage
-              professionnel.
+          <p className="text-lg text-gray-700 mb-4 max-w-3xl">
+            Casametrix unifie DVF, DPE, cadastre, GPS et scoring pour constituer un golden index
+            d’adresses. Une API sécurisée et une interface web permettent aux équipes immobilières,
+            aux investisseurs et aux asset managers de travailler sur une donnée fiable, enrichie et
+            actionnable.
+          </p>
+
+          <div className="flex flex-wrap gap-4 mt-8">
+            <a
+              href="/search"
+              className="px-6 py-3 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700"
+            >
+              Tester la recherche d’adresse
+            </a>
+
+            <a
+              href="/pricing"
+              className="px-6 py-3 rounded-lg border border-gray-400 text-gray-800 font-medium hover:bg-gray-100"
+            >
+              Voir les tarifs
+            </a>
+          </div>
+
+          <p className="text-sm text-gray-500 mt-4">
+            Données DVF et DPE issues des sources publiques, consolidées dans un golden index multi-adresses pensé pour l’usage professionnel.
+          </p>
+        </section>
+
+        {/* --- GOLDEN INDEX --- */}
+        <section className="grid md:grid-cols-2 gap-8 mt-10">
+          <div className="p-6 bg-gray-50 border rounded-xl">
+            <h2 className="text-lg font-semibold mb-4">
+              Golden Index Casametrix
+            </h2>
+            <p className="text-gray-700">
+              Chaque adresse cliquée dans le moteur de recherche est enregistrée dans une table
+              PostgreSQL <code>public.addresses</code>. Ce “golden index” permet d’identifier les zones
+              d’intérêt, de prioriser les analyses et de construire des scores sur mesure.
             </p>
           </div>
 
-          {/* Petit encart “golden index” */}
-          <div className="space-y-4">
-            <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                Golden index Casametrix
-              </p>
-              <p className="mt-2 text-sm text-slate-700">
-                Chaque adresse cliquée dans le moteur de recherche est
-                enregistrée dans une table PostgreSQL{" "}
-                <code className="rounded bg-slate-100 px-1 py-px text-[11px]">
-                  public.addresses
-                </code>
-                . Ce “golden index” permet d’identifier les zones d’intérêt,
-                de prioriser les analyses et de construire des scores sur
-                mesure.
-              </p>
-            </div>
-
-            <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                API & sécurité
-              </p>
-              <p className="mt-2 text-sm text-slate-700">
-                L’API Casametrix est sécurisée par JWT et pensée pour une
-                intégration simple dans vos outils internes, applications
-                métiers ou plateformes d’investissement. Le multi-tenant via
-                PostgreSQL RLS est prévu pour isoler les données par
-                organisation.
-              </p>
-            </div>
+          <div className="p-6 bg-gray-50 border rounded-xl">
+            <h2 className="text-lg font-semibold mb-4">
+              API & Sécurité
+            </h2>
+            <p className="text-gray-700">
+              L’API Casametrix est sécurisée par JWT et pensée pour une intégration simple dans vos outils
+              internes, applications métiers ou plateformes d’investissement. Le multi-tenant via PostgreSQL
+              RLS isole les données par organisation.
+            </p>
           </div>
         </section>
 
-        {/* Bandeau d’accroche secondaire */}
-        <section className="mt-10 rounded-2xl border border-slate-200 bg-white px-4 py-4 shadow-sm">
-          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                Roadmap
-              </p>
-              <p className="mt-1 text-sm text-slate-700">
-                À venir : PropertyRecord complet (DVF + DPE + cadastre),
-                scoring ESG, requêtes immobilières naturelles via LLM et
-                dashboards d’analyses territoriales.
-              </p>
-            </div>
-            <div className="flex gap-2">
-              <Link
-                to="/faq"
-                className="inline-flex items-center rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-800 hover:bg-slate-100"
-              >
-                En savoir plus
-              </Link>
-              <Link
-                to="/register"
-                className="inline-flex items-center rounded-xl bg-sky-600 px-3 py-2 text-xs font-semibold text-white shadow-sm hover:bg-sky-700"
-              >
-                Créer un compte Casametrix
-              </Link>
-            </div>
+        {/* --- ROADMAP --- */}
+        <section className="mt-16 p-6 border bg-gray-50 rounded-xl">
+          <h2 className="text-sm tracking-wide font-semibold text-gray-500">ROADMAP</h2>
+          <p className="text-gray-700 mt-2">
+            À venir : PropertyRecord complet (DVF + DPE + cadastre), scoring ESG, requêtes immobilières
+            naturelles via LLM et dashboards d’analyses territoriales.
+          </p>
+
+          <div className="flex flex-wrap gap-4 mt-6">
+            <a
+              href="/about"
+              className="px-6 py-2 rounded-lg border border-gray-400 text-gray-800 font-medium hover:bg-gray-100"
+            >
+              En savoir plus
+            </a>
+
+            <a
+              href="/register"
+              className="px-6 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700"
+            >
+              Créer un compte Casametrix
+            </a>
           </div>
         </section>
-      </main>
-    </div>
+      </div>
+    </Layout>
   );
-};
-
-export default HomePage;
+}
